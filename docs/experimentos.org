@@ -10,6 +10,13 @@ Ejecutar una tarea en python y luego utilizar redis.
 Referencia a reproducir: [[https://asciinema.org/a/DhGBPiVkQVYjFuHNubr2Sn4wS][Link]]
 (el link de referencia visualmente es un video, pero puedes pausar y copiar el código de las pantallas)
 
+Los argumentos de =Celery= a utilizar en tasks.py son:
+#+begin_src python
+app = Celery(
+    "tasks", broker="redis://localhost:6379/0"
+)
+#+end_src
+
 ** Desarrollo
 
 Ejecutar en una terminal un worker para =tasks=:
