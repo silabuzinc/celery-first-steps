@@ -7,7 +7,9 @@ Con el entorno virtual activado y las dependencias instaladas.
 ** Descripción
 
 Ejecutar una tarea en python y luego utilizar redis.
+
 Referencia a reproducir: [[https://asciinema.org/a/DhGBPiVkQVYjFuHNubr2Sn4wS][Link]]
+
 (el link de referencia visualmente es un video, pero puedes pausar y copiar el código de las pantallas)
 
 Los argumentos de =Celery= a utilizar en tasks.py son:
@@ -46,7 +48,9 @@ calculando_suma.delay(5, 2)
 ** Descripción
 
 Habilitar en la configuración de celery el guardado del estado y retorno de los valores de las tareas en Redis.
+
 Referencia a reproducir: [[https://asciinema.org/a/GPnnOvlSQ7rkxzpOizR8T2NG8][Link]]
+
 (el link de referencia visualmente es un video, pero puedes pausar y copiar el código de las pantallas)
 
 ** Desarrollo
