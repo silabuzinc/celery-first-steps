@@ -2,7 +2,7 @@
 
 * Instalación
 
-Referencia: [[https://redis.io/docs/getting-started/][Instalación Redis]
+Referencia: [[https://redis.io/docs/getting-started/][Instalación Redis]]
 
 ** Instalación local
 
