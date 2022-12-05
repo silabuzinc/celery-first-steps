@@ -1,0 +1,79 @@
+#+title: Experimentos
+
+Con el entorno virtual activado y las dependencias instaladas.
+
+* Experimento 1
+
+** Descripción
+
+Ejecutar una tarea en python y luego utilizar redis.
+Referencia a reproducir: [[https://asciinema.org/a/DhGBPiVkQVYjFuHNubr2Sn4wS][Link]]
+(el link de referencia visualmente es un video, pero puedes pausar y copiar el código de las pantallas)
+
+** Desarrollo
+
+Ejecutar en una terminal un worker para =tasks=:
+
+#+begin_src bash
+celery -A tasks worker --loglevel=INFO
+#+end_src
+
+En otra terminal, ejecutar línea a línea lo siguiente en python o ipython:
+
+#+begin_src python
+from tasks import calculando_suma
+
+calculando_suma(5, 2)
+
+calculando_suma.delay(5, 2)
+#+end_src
+
+** Analizar
+
+- ¿Mejoró la experiencia en el repl de Python/iPython?
+- Si en la función =calculando_suma= aumentamos el tiempo de sleep de 3 a 7 segundos. Al reiniciar solo la shell de Python/iPython ¿se aplica el cambio con .delay?¿Por qué?
+- Si ejecutasemos: =resultado = calculando_suma.delay(5, 2)=, ¿Qué ocurriría si ejecutamos en la shell de Python/iPython =resultado.ready()=? ¿Por qué?
+
+* Experimento 2
+
+** Descripción
+
+Habilitar en la configuración de celery el guardado del estado y retorno de los valores de las tareas en Redis.
+Referencia a reproducir: [[https://asciinema.org/a/GPnnOvlSQ7rkxzpOizR8T2NG8][Link]]
+(el link de referencia visualmente es un video, pero puedes pausar y copiar el código de las pantallas)
+
+** Desarrollo
+
+En el archivo =tasks.py= agregar el parámetro =backend=
+
+#+begin_src python
+app = Celery(
+    "tasks", broker="redis://localhost:6379/0", backend="redis://localhost:6379/0"
+)
+#+end_src
+
+Reiniciando tanto celery como python/ipython, proceder a ejecutar las siguientes líneas de código:
+
+#+begin_src python
+from tasks import calculando_suma
+
+calculando_suma(5, 2)
+
+calculando_suma.delay(5, 2)
+
+resultado = calculando_suma.delay(5, 2)
+
+resultado.ready()
+
+resultado.ready()
+#+end_src
+
+** Analizar
+
+Explique el valor retornado por =resultado.ready()=
+
+
+* Experimento 3
+
+En la shell de Python/iPython con un bucle =for= generar en cola unas 50 tareas.
+Posteriormente eliminar de dicha cola todas las tareas pendientes.

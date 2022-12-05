@@ -1,0 +1,22 @@
+#+title: Setup de entorno virtual
+#+PROPERTY: header-args :eval never-export
+
+* Entorno virtual
+
+#+begin_src bash
+source venv/bin/activate
+#+end_src
+
+** Paquetes a instalar
+
+En el archivo =requirements.txt= tenemos:
+
+#+begin_src bash :exports output :dir /Users/jorge/repos/silabuz/django-exp/celery-first-steps
+cat requirements.txt
+#+end_src
+
+#+RESULTS:
+| celery[redis] |
+| ipython       |
+
+Cabe resaltar que se instalará lo concerniente a =celery= y =redis=. En el caso de =ipython= es de manera complementaria para mejorar la interacción en la shell.

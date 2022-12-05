@@ -1,0 +1,9 @@
+#+title: Readme
+
+* Celery First Steps
+
+Exploración de Celery y Redis.
+
+- [[docs/setup_venv.org][Virtual environment]] ✔️
+- [[docs/redis.org][Setup Redis]] 🚀
+- [[docs/experimentos.org][Experimentos]]

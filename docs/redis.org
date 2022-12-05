@@ -1,0 +1,84 @@
+#+title: Redis
+
+* Instalación
+
+Referencia: [[https://redis.io/docs/getting-started/][Instalación Redis]
+
+** Instalación local
+
+*** Windows
+
+Enable WSL2
+
+[[https://redis.io/docs/getting-started/installation/install-redis-on-windows/][Referencia de documentación oficial de Redis]]
+
+*** Linux
+
+[[https://redis.io/docs/getting-started/installation/install-redis-on-linux/][Instalando redis localente con Linux]]
+
+*** macOS
+
+#+begin_src bash
+brew install redis
+#+end_src
+
+** Docker
+
+Descargando imagen =redis-stack= que contiene Redis Stack Server y RedisInsight (para visualizar la data).
+
+#+begin_src shell
+docker pull redis/redis-stack
+#+end_src
+
+Creando el contenedor a usar (y nombrándolo como =redis-stack-silabuz=):
+
+#+begin_src shell :exports both
+docker run -d --name redis-stack-silabuz -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+#+end_src
+
+#+RESULTS:
+: 050964ef09d70f2aaa3ded6c1dca41e36692e506d2ff7525350d08584b54399e
+
+** Acceso al CLI
+
+Para las instalacioens locales: =redis-cli=
+
+Para docker, se logra conectándonos a través de =redis-cli=:
+
+#+begin_src shell
+docker exec -it redis-stack-silabuz redis-cli
+#+end_src
+
+* Validaciones
+
+Verificamos esté ok, escribiendo el comando PING debemos recibir PONG de parte de redis.
+
+#+begin_src console
+127.0.0.1:6379> PING
+PONG
+127.0.0.1:6379>
+#+end_src
+
+Asimismo desde nuestro entorno virtual activo, podemos verificar la versión instalada de celery:
+
+#+BEGIN_SRC emacs-lisp :session python :exports none
+(pyvenv-activate "/Users/jorge/repos/silabuz/django-exp/celery-first-steps/venv")
+#+END_SRC
+
+#+RESULTS:
+
+#+begin_src bash :session python :exports both
+celery --version
+#+end_src
+
+#+RESULTS:
+: 5.2.7 (dawn-chorus)
+
+Las series 5.x de celery tiene el nombre en clave de las canciones del músico inglés [[https://en.wikipedia.org/wiki/Jon_Hopkins][Jon Hopkins]]. Para la serie 5.2 es [[https://www.youtube.com/watch?v=bvsZBdo5pEk][Dawn Chorus]],
+
+* Comandos básicos
+
+En la shell de redis podemos usar:
+
+- PING
+- INFO
